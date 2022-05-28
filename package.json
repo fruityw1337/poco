@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node index.js",
         "server": "nodemon index.js",
-        "client": "npm run start --prefix client",
+        "client": "npm run dev --prefix client",
         "client:install": "npm install --prefix client",
         "client:build": "npm run build --prefix client",
         "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -14,6 +14,7 @@
     "author": "soda",
     "license": "ISC",
     "dependencies": {
+        "axios": "^0.27.2",
         "bcrypt": "^5.0.1",
         "config": "^3.3.7",
         "express": "^4.18.1",
