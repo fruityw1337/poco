@@ -50,7 +50,7 @@ router.post(
       res.status(201).json({ message: 'user has been created' })
     } catch (e) {
       res.status(500).json({
-        message: 'something goes wrong on the backend',
+        message: 'something went wrong on the server side',
       })
     }
   }

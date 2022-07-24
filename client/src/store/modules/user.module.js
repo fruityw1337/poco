@@ -45,7 +45,7 @@ const mutations = {
   },
 }
 
-const lastActivity = await JSON.parse(localStorage.getItem('user'))
+const lastActivity = JSON.parse(localStorage.getItem('user'))
 const state = {
   user: lastActivity ? lastActivity : null,
 }
