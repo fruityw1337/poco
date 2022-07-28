@@ -1,11 +1,21 @@
 <template>
-  <div class="page-title">feed.</div>
   <div class="posts-wrapper">
     <div class="post" v-for="post in posts">
-      <div class="title">
-        {{ post.title }}
-      </div>
-      <div class="owner">created by: {{ post.createdBy }}</div>
+      <router-link :to="'#'">
+        <img
+          v-if="post.image"
+          class="post-image"
+          :src="post.image"
+          :alt="post.title"
+        />
+        <div v-if="!post.image" class="post-image">💔</div>
+        <div class="post-decription">
+          <div class="title">
+            {{ post.title }}
+          </div>
+          <div class="owner">created by: {{ post.createdBy }}</div>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -19,7 +29,7 @@ export default {
     }
   },
 
-  created() {
+  async created() {
     this.getPosts()
   },
 
@@ -39,24 +49,43 @@ export default {
 </script>
 
 <style scoped>
-.page-title {
-  font-size: 3rem;
-  margin-bottom: 18px;
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .posts-wrapper {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .post {
+  margin: 5px;
+}
+
+.post-image {
+  font-size: 3rem;
+  width: 348px;
+  height: 250px;
+  background-color: rgb(22, 22, 22);
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-decription {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 300px;
-  height: 300px;
+  height: 120px;
   padding: 24px;
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
   background-color: rgb(22, 22, 22);
-  margin-right: 5px;
 }
 </style>

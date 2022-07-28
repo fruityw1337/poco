@@ -99,7 +99,9 @@ router.post(
         }
       )
 
-      return res.status(200).json({ token, username: user.username })
+      return res
+        .status(200)
+        .json({ token, username: user.username, id: user.id })
     } catch {
       res.status(500).json({
         message: 'something goes wrong on the backend',

@@ -23,11 +23,11 @@ router.post('/create', auth, async (req, res) => {
   }
 })
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find()
+    const posts = await Post.find({ limit: 10 })
 
-    res.status(201).json(posts)
+    res.status(200).json(posts)
   } catch (error) {
     return res.status(401).json({ message: 'not auth' })
   }

@@ -1,9 +1,10 @@
 const config = require('config')
 const express = require('express')
 const mongoose = require('mongoose')
+const path = require('path')
 
 const app = express()
-const port = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000
 
 app.use(express.json({ extended: true }))
 
@@ -21,15 +22,19 @@ async function start() {
 
     if (process.env.NODE_ENV === 'production') {
       app.use(express.static('client/dist'))
-      const path = require('path')
+
       app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
       })
-    }
 
-    app.listen(port, () => {
-      console.log(`app has been started on port ${port}.`)
-    })
+      app.listen(PORT, '0.0.0.0', () => {
+        console.log(`app has been started on on port ${PORT}.`)
+      })
+    } else {
+      app.listen(PORT, () => {
+        console.log(`app has been started on on port ${PORT}.`)
+      })
+    }
   } catch (e) {
     console.log('error', e)
     process.exit(1)
