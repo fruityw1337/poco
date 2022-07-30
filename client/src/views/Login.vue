@@ -2,18 +2,21 @@
   <div class="wrapper">
     <div class="login-form">
       <input
+        class="login-input"
         v-model="username"
         name="username"
         placeholder="username"
         autocomplete="off"
       />
       <input
+        class="login-input"
         v-model="password"
         type="password"
         name="password"
         placeholder="password"
       />
       <input
+        class="login-input"
         v-if="!loginAction"
         v-model="confirmPassword"
         type="password"
@@ -73,48 +76,28 @@ export default {
 
 <style scoped>
 .wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 250px;
   background: none;
 }
 
-input {
+.login-input {
   font-size: 50px;
-  margin: 0 0 5px 0;
-  padding: 5px 10px;
-  border-radius: 15px;
-  border: 2px solid grey;
-  color: gray;
-  background: none;
-  text-align: center;
-  transition: 0.4s;
-}
-
-input:hover {
-  border: 2px solid #5c5c5c;
-  transition: 0.4s;
-}
-
-input:focus {
-  transition: 0.4s;
-  border: 2px solid #5c5c5c;
-  outline: none;
 }
 
 .btn {
   cursor: pointer;
-  font-size: 50px;
+  font-size: 48px;
   border-radius: 15px;
-  padding: 5px 10px;
+  padding: 0px 10px;
   margin: 0 0 5px 0;
   transition: 0.4s;
   color: gray;
@@ -122,6 +105,7 @@ input:focus {
 }
 
 .login-btn {
+  text-align: center;
   background-color: #808080;
   color: rgb(48, 48, 48);
 }
@@ -132,6 +116,7 @@ input:focus {
 }
 
 .registration-btn {
+  text-align: center;
   background: none;
   font-size: 1.2rem;
 }

@@ -13,7 +13,12 @@
           <div class="title">
             {{ post.title }}
           </div>
-          <div class="owner">created by: {{ post.createdBy }}</div>
+          <div class="info">
+            <div class="post-owner">created by: {{ post.createdBy }}</div>
+            <div class="post-owner">
+              {{ new Date(post.createdDate).toLocaleDateString('en-US') }}
+            </div>
+          </div>
         </div>
       </router-link>
     </div>
@@ -53,14 +58,21 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
 .posts-wrapper {
   display: flex;
   flex-wrap: wrap;
+  padding: 5px 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .post {
@@ -69,7 +81,7 @@ export default {
 
 .post-image {
   font-size: 3rem;
-  width: 348px;
+  width: 328px;
   height: 250px;
   background-color: rgb(22, 22, 22);
   border-radius: 10px 10px 0 0;
@@ -82,10 +94,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
-  height: 120px;
+  width: 280px;
+  height: 100px;
   padding: 24px;
   border-radius: 0px 0px 10px 10px;
   background-color: rgb(22, 22, 22);
+}
+
+.post-owner {
+  font-size: 0.8rem;
 }
 </style>

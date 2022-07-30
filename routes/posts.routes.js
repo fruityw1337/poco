@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const auth = require('../middleware/auth.middleware')
 const Post = require('../models/Post')
+const User = require('../models/User')
 
 const router = Router()
 
@@ -25,7 +26,12 @@ router.post('/create', auth, async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find({ limit: 10 })
+    let posts = await Post.find({ limit: 10 })
+
+    for (let post of posts) {
+      owner = await User.findById(post.createdBy)
+      post.createdBy = owner.username
+    }
 
     res.status(200).json(posts)
   } catch (error) {
