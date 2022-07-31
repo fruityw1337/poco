@@ -1,7 +1,7 @@
 <template>
   <div class="posts-wrapper">
     <div class="post" v-for="post in posts">
-      <router-link :to="'#'">
+      <router-link :to="`/movie/${post._id}`">
         <img
           v-if="post.image"
           class="post-image"
@@ -14,7 +14,7 @@
             {{ post.title }}
           </div>
           <div class="info">
-            <div class="post-owner">created by: {{ post.createdBy }}</div>
+            <div class="post-owner">🎬 {{ post.views }}</div>
             <div class="post-owner">
               {{ new Date(post.createdDate).toLocaleDateString('en-US') }}
             </div>
@@ -58,8 +58,8 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 
@@ -73,30 +73,42 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-content: center;
+  text-align: center;
 }
 
 .post {
   margin: 5px;
+  transition: 0.3s;
+}
+
+.post:hover {
+  transition: 0.3s;
+  border-radius: 15px;
+  /* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.61); */
+  box-shadow: rgba(94, 94, 167, 0.25) 0px 50px 100px -20px,
+    rgba(255, 255, 255, 0.534) 0px 30px 60px -30px;
 }
 
 .post-image {
   font-size: 3rem;
-  width: 328px;
-  height: 250px;
+  width: 200px;
+  height: 270px;
   background-color: rgb(22, 22, 22);
   border-radius: 10px 10px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  object-fit: cover;
 }
 
 .post-decription {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 280px;
-  height: 100px;
-  padding: 24px;
+  width: 180px;
+  height: 60px;
+  padding: 10px;
   border-radius: 0px 0px 10px 10px;
   background-color: rgb(22, 22, 22);
 }

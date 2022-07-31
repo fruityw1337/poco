@@ -46,6 +46,7 @@ header {
   padding: 0 24px;
   display: flex;
   justify-content: space-between;
+  /* box-shadow: rgba(0, 0, 0, 0.45) 0px 15px 15px 0px; */
 }
 
 .logo {

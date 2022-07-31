@@ -5,20 +5,15 @@ const User = require('../models/User')
 
 const router = Router()
 
-router.post('/create', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const { image, title, description, createdBy } = req.body
+    let post = await Post.findById(req.params.id)
+    console.log('post', post)
 
-    const post = new Post({
-      title,
-      description,
-      image,
-      createdBy,
-    })
+    const owner = await User.findById(post.createdBy)
+    post.createdBy = owner.username
 
-    await post.save()
-
-    res.status(201).json({ post })
+    res.status(200).json(post)
   } catch (error) {
     return res.status(401).json({ message: 'not auth' })
   }
@@ -34,6 +29,25 @@ router.get('/', async (req, res) => {
     }
 
     res.status(200).json(posts)
+  } catch (error) {
+    return res.status(401).json({ message: 'not auth' })
+  }
+})
+
+router.post('/create', auth, async (req, res) => {
+  try {
+    const { image, title, description, createdBy } = req.body
+
+    const post = new Post({
+      title,
+      description,
+      image,
+      createdBy,
+    })
+
+    await post.save()
+
+    res.status(201).json({ post })
   } catch (error) {
     return res.status(401).json({ message: 'not auth' })
   }

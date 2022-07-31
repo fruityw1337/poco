@@ -52,8 +52,7 @@ a {
   color: white;
 }
 
-input,
-textarea {
+input {
   font-size: 25px;
   margin: 0 0 5px 0;
   padding: 5px 10px;
@@ -65,14 +64,12 @@ textarea {
   resize: none;
 }
 
-input:hover,
-textarea:hover {
+input:hover {
   border: 2px solid #5c5c5c;
   transition: 0.4s;
 }
 
-input:focus,
-textarea:focus {
+input:focus {
   transition: 0.4s;
   border: 2px solid #5c5c5c;
   outline: none;
